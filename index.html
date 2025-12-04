@@ -41,7 +41,6 @@
 
         const Button = ({text, update, value}) => {
 
-            
             const execute = () =>{
                 
                 switch (text){
@@ -52,16 +51,14 @@
                     case 'increase':
                         return update(value + 1);
                 }
-
-                return <button onClick={execute}>{text}</button>;
             }
+
+            return <button onClick={execute}>{text}</button>;
         }
         
         const App = () =>{
 
             const [currentState, setCurrentState] = React.useState(0);
-
-
 
             return (
                 <>
@@ -78,7 +75,7 @@
                             value = {currentState}
                         />
                         <Button 
-                            text ='Incriese' 
+                            text ='increase' 
                             update = {setCurrentState}
                             value = {currentState}
                         />
