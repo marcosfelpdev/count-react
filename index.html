@@ -10,10 +10,16 @@
     />
     <title>Count</title>
   </head>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+    </style>
   <body>
 
     <div id="root"></div>
-
     <script
       crossorigin
       src="https://unpkg.com/react@18/umd/react.development.js">
@@ -31,15 +37,53 @@
 
     <script type="text/babel">
 
+
+        const BoxStr ={
+            display: "flex",
+            width: "100vw",
+            height: "100vh",
+            flexDirection: "column",
+            gap: "70px",
+            justifyContent: "Center",
+            alignItems: "Center",
+            backgroundColor: "#313715",
+            backgroundImage: 'url:("/green.webp")'
+
+        }
+
+        const counterStyle = {
+            color: "#faff00",
+            fontSize: "80px",
+            backgroundColor: "#00916e",
+            padding: "50px, 230px",
+            borderRadius: "24%",
+            textAlign: "center"
+        }
+
+
+        const styleButton = {
+            fontSize: "70px",
+            color: "#ffb703",
+            backgroundColor: "#9b5de5",
+            width: "120px",
+            height: "120px",
+            borderRadius: "40%",
+            border: "solid, 10px, #d00000",
+            webkitTextStrokeWidth: "4px",
+            webkitTextStrokeColor: "#3b0086"
+
+        }
+        
         const Number = ({value}) => {
-            return <span>{value}</span>;
+            return <span style={counterStyle}>{value}</span>;
         }
-
+        
         const Box = ({children}) => {
-            return <div>{children}</div>;
+            return <div style={BoxStr}>{children}</div>;
         }
-
+        
         const Button = ({text, update, value}) => {
+            
 
             const execute = () =>{
                 
@@ -53,7 +97,7 @@
                 }
             }
 
-            return <button onClick={execute}>{text}</button>;
+            return <button style={styleButton} onClick={execute}>{text}</button>;
         }
         
         const App = () =>{
@@ -62,32 +106,31 @@
 
             return (
                 <>
-                    <Number value={currentState}/>
                     <Box>
-                        <Button 
-                            text='decrement' 
-                            update = {setCurrentState}
-                            value = {currentState}
-                        />
-                        <Button 
-                            text ='reset' 
-                            update = {setCurrentState}
-                            value = {currentState}
-                        />
-                        <Button 
-                            text ='increase' 
-                            update = {setCurrentState}
-                            value = {currentState}
-                        />
+                        <Number value={currentState}/>
+                        <Box buttons='true'>
+                            <Button
+                                text='decrement'
+                                update = {setCurrentState}
+                                value = {currentState}
+                            />
+                            <Button
+                                text ='reset'
+                                update = {setCurrentState}
+                                value = {currentState}
+                            />
+                            <Button
+                                text ='increase'
+                                update = {setCurrentState}
+                                value = {currentState}
+                            />
+                        </Box>
                     </Box>
                 </>
             );
         }
 
-
         const root = document.querySelector('#root');
-
-
 
         ReactDOM.createRoot(root).render(<App />);
 
